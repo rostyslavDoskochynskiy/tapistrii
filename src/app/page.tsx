@@ -1,113 +1,204 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
+import { Container } from '@/shared/components/Container';
+import { SliderCryptocurrency } from '@/shared/components/SliderCryptocurrency';
+import { BaseBox } from '@/shared/components/Boxes/BaseBox';
+import Image from 'next/image';
+import clsx from 'clsx';
+
+// Icons
+import NFTIcon from '@/shared/assets/icons/NFT.svg';
+import BlockIcon from '@/shared/assets/icons/Block.svg';
+import UploadIcon from '@/shared/assets/icons/Upload.svg';
+import CommentIcon from '@/shared/assets/icons/Comment.svg';
+import LikeIcon from '@/shared/assets/icons/Like.svg';
+
+const items = [
+  'Services', 'Bitcoin', 'Ordinals', 'Runes', 'Ethereum'
+]
+
+const cryptocurrencys = [
+  { title: 'Ethereum', code: 'ETH', value: 3158.83, rate: 1.4 },
+  { title: 'HEX', code: 'HEX', value: 0.997698, rate: 0.38 },
+  { title: 'Tether', code: 'TET', value: 0.99843, rate: 0.04 },
+]
+
+const Home = () => {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <Container>
+      <div className='flex w-full items-center gap-2 mb-[32px]'>
+        {items.map((item, index) => (
+          <button key={index + item} className='rounded-[12px] px-4 py-[9px] bg-[#111111]/70'>
+            {item}
+          </button>
+        ))}
       </div>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <SliderCryptocurrency items={cryptocurrencys} />
+
+      <div className='flex flex-col w-full gap-[117px] mt-[78px]'>
+        <BaseBox title='Top services'>
+          <div className='grid grid-cols-1 gap-[27px] md:grid-cols-3'>
+            {Array.from({ length: 9 }).map((item, index) => (
+                <div key={index} className='flex gap-4'>
+                    <div className='w-[74px] h-[74px] bg-[#474747] rounded-md'/>
+                    <div className='flex-1 flex flex-col gap-1'>
+                        <span className='font-bold text-[24px]'>Title</span>
+                        <span>Lorem ipsum dolor sit</span>
+                        <span className='text-[12px]'>10000 items · 5337 collectors</span>
+                        <div className='flex items-center gap-2 text-[12px] text-[#AFAFAF] font-medium'>
+                            <span>Type</span>
+                            <span>Ecosystem</span>
+                        </div>
+                    </div>
+                </div>
+            ))}
+          </div>
+        </BaseBox>
+        
+        <BaseBox title='Latest airdrops'>
+          <div className='grid grid-cols-1 gap-[27px] md:grid-cols-3'>
+            {Array.from({ length: 9 }).map((item, index) => (
+                <div key={index} className='flex gap-4'>
+                    <div className='w-[74px] h-[74px] bg-[#474747] rounded-md'/>
+                    <div className='flex-1 flex flex-col gap-1'>
+                        <span className='font-bold text-[24px]'>Title</span>
+                        <span>Lorem ipsum dolor sit</span>
+                        <span className='text-[12px]'>10000 items · 5337 collectors</span>
+                        <div className='flex items-center gap-2 text-[12px] text-[#AFAFAF] font-medium'>
+                            <span>Type</span>
+                            <span>Ecosystem</span>
+                        </div>
+                    </div>
+                </div>
+            ))}
+          </div>
+        </BaseBox>
+        
+        <BaseBox title='Top collections'>
+          <div className='grid grid-cols-6 gap-[56px]'>
+            {Array.from({ length: 5 }).map((item, index) => (
+                <div key={index} className={clsx('w-full flex flex-col justify-between h-[372px] rounded-[20px] bg-[#474747] p-[24px]', {
+                  'col-span-3': index < 2,
+                  'col-span-2': index >= 2
+                })}>
+                  <div className='w-full flex items-center gap-2'>
+                    <span className='rounded-[4px] px-[8px] py-[1px] bg-[#E28800]'>BTC</span>
+                    <span className='rounded-[4px] px-[8px] py-[1px] bg-[#676879]'>NFT</span>
+                  </div>
+                  <div className='w-full flex flex-col gap-4'>
+                    <div className='w-[94px] h-[94px] rounded-[8px] bg-black'></div>
+                    <div className='text-[24px] font-bold'>BoredApeYachtClub</div>
+                  </div>
+                </div>
+            ))}
+          </div>
+        </BaseBox>
+
+        <BaseBox title='What’s hot'>
+          <SliderCryptocurrency items={cryptocurrencys} />
+        </BaseBox>
+
+        <BaseBox title='Trending [title]'>
+          <div className='grid grid-cols-1 gap-[27px] md:grid-cols-2 lg:grid-cols-3'>
+            {Array.from({ length: 3 }).map((item, index) => (
+                <div key={index} className='w-[372px] h-[372px] rounded-[20px] bg-[#474747]'>
+
+                </div>
+            ))}
+          </div>
+        </BaseBox>
+        
+        <BaseBox title='Newest tokens'>
+          <div className='grid grid-cols-1 gap-[27px] md:grid-cols-3'>
+            {Array.from({ length: 9 }).map((item, index) => (
+                <div key={index} className='flex gap-4'>
+                    <div className='w-[74px] h-[74px] bg-[#474747] rounded-md'/>
+                    <div className='flex-1 flex flex-col gap-1'>
+                        <span className='font-bold text-[24px]'>Title</span>
+                        <span>Lorem ipsum dolor sit</span>
+                        <span className='text-[12px]'>10000 items · 5337 collectors</span>
+                        <div className='flex items-center gap-2 text-[12px] text-[#AFAFAF] font-medium'>
+                            <span>Type</span>
+                            <span>Ecosystem</span>
+                        </div>
+                    </div>
+                </div>
+            ))}
+          </div>
+        </BaseBox>
+
+        <BaseBox title='Cool NFTs'>
+          <div className='grid grid-cols-1 gap-[27px] md:grid-cols-4'>
+            {[1, 2, 3, 4].map((item, index) => (
+                <div key={index} className='p-4 border border-[#4B4E69] flex flex-col gap-4 rounded-[20px]'>
+                  <div className='w-full aspect-[1] bg-[#222222] rounded-[12px]'/>
+                  <div className='w-full flex items-center justify-between'>
+                    <span className='flex items-center gap-[8px]'>
+                      <Image src={NFTIcon} width={20} height={20} alt='NFT icon' />
+                      <span className='text-[14px] font-mono'>Fireblocks</span>
+                    </span>
+                    <span className='flex items-center gap-[24px]'>
+                      <Image src={BlockIcon} width={16} height={16} alt='Block icon' />
+                      <Image src={UploadIcon} width={11} height={11} alt='Upload icon' />
+                    </span>
+                  </div>
+                  <div className='text-[22px] font-bold'>Title of NFT #1572</div>
+                  <div className='flex w-full flex-col gap-[2px]'>
+                    <div className='text-[18px] font-semibold'>
+                      <span className='text-white/50'>Sold for</span> 342ETH · $14.00
+                    </div>
+                    <div className='text-[12px] text-[#A1A1A1]'>
+                      From #eth_address to #eth_address on #mktplace
+                    </div>
+                  </div>
+                  <div className='flex w-full flex-wrap items-center justify-between'>
+                    <div className='flex items-center gap-5'>
+                      {Array.from({ length: 2 }).map((item, index) => (
+                        <div key={index} className='relative w-[32px] aspect-[1] rounded-full bg-cyan-400'>
+                          <div className='w-[18px] aspect-[1] rounded-full absolute -right-[10px] bottom-0 bg-violet-500'>
+
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className='flex items-center gap-2 font-medium text-[12px]'>
+                      <span className='flex items-center gap-[8px] px-[12px] py-[7px] rounded-[8px] bg-[#474747]'>
+                        <Image src={CommentIcon} width={16} height={16} alt='Comment icon' />
+                        6
+                      </span>
+                      <span className='flex items-center gap-[8px] px-[12px] py-[7px] rounded-[8px] bg-[#474747]'>
+                        <Image src={LikeIcon} width={16} height={16} alt='Like icon' />
+                        14
+                      </span>
+                    </div>
+                  </div>
+                </div>
+            ))}
+          </div>
+        </BaseBox>
+
+        <BaseBox title='Wallet providers'>
+          <div className='grid grid-cols-1 gap-[27px] md:grid-cols-3'>
+            {Array.from({ length: 9 }).map((item, index) => (
+                <div key={index} className='flex gap-4'>
+                    <div className='w-[74px] h-[74px] bg-[#474747] rounded-md'/>
+                    <div className='flex-1 flex flex-col gap-1'>
+                        <span className='font-bold text-[24px]'>Title</span>
+                        <span>Lorem ipsum dolor sit</span>
+                        <span className='text-[12px]'>10000 items · 5337 collectors</span>
+                        <div className='flex items-center gap-2 text-[12px] text-[#AFAFAF] font-medium'>
+                            <span>Type</span>
+                            <span>Ecosystem</span>
+                        </div>
+                    </div>
+                </div>
+            ))}
+          </div>
+        </BaseBox>
       </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </Container>
   );
 }
+
+export default Home;
