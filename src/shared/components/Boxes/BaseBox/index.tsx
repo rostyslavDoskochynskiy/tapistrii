@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import { Button } from '@/shared/Button';
+import { BaseTitle } from '@/shared/Typography/BaseTitle';
 import clsx from 'clsx';
 
 interface Props {
@@ -14,10 +15,11 @@ export const BaseBox = ({ title, children }: Props) => {
     const [activeTab, setActiveTab] = useState<IBaseBoxTabs>('24HR');
 
     return (
-        <div className='flex w-full flex-col gap-[57px]'>
+        <div className='flex w-full flex-col gap-[40px] md:gap-[57px]'>
             <div className='flex items-center justify-between px-5'>
-                <span className='text-[32px] font-bold'>{title}</span>
-                <div className='w-fit flex items-center gap-2'>
+                <BaseTitle text={title}/>
+                <Button className='!border-transparent normal-case text-[14px] md:hidden'>See all</Button>
+                <div className='hidden items-center gap-2 md:flex'>
                     <Button 
                         variant='filled' 
                         className={clsx('text-white !bg-[#111111]/70 !px-4 !py-2', {

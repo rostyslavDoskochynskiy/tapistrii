@@ -5,10 +5,12 @@ import { Logo } from '@/shared/components/Logo';
 import { NavList } from './ui/NavList';
 import { Button } from '@/shared/Button';
 import { Avatar } from './ui/Avatar';
+import { MobileMenu } from './ui/MobileMenu';
 import clsx from 'clsx';
 
 export const Header = () => {
     const [active, setActive] = useState<boolean>(false)
+
     const header = useRef(null)
     const isLoggedIn = false
 
@@ -45,10 +47,7 @@ export const Header = () => {
                 <div className='w-fit flex items-center gap-5'>
                     <Button variant='filled' className='hidden md:block'>CONNECT</Button>
                     <Avatar isLoggedIn={isLoggedIn}/>
-                    <div className='flex flex-col justify-between w-[20px] h-[15px] cursor-pointer md:hidden'>
-                        <span className='block h-[1px] bg-white'/>
-                        <span className='block h-[1px] bg-white'/>
-                    </div>
+                    <MobileMenu/>
                 </div>
             </Container>
         </header>
