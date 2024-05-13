@@ -36,7 +36,7 @@ export const Avatar = ({ isLoggedIn }: Props) => {
             <MdKeyboardArrowDown className='w-5 h-5'/>
             {isMenuOpen && (
                 <div className='w-fit min-w-[164px] h-fit absolute right-0 -bottom-[100%] p-[8px] bg-white text-black rounded-[8px] translate-y-[80%]'>
-                    {isLoggedIn ? (<>
+                    {!isLoggedIn ? (<>
                         <div className='p-[8px]'>Sign up</div>
                         <div className='p-[8px]'>Log in</div>
                     </>) : (<>
